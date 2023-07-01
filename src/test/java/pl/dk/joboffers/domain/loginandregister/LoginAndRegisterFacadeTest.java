@@ -1,6 +1,7 @@
 package pl.dk.joboffers.domain.loginandregister;
 
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -49,13 +50,17 @@ class LoginAndRegisterFacadeTest {
                 .username("ADMA321")
                 .password("hardPass")
                 .build();
+        String usernameNotInDb = "Jan";
 
         UserDto registeredUser = loginAndRegisterFacade.registerUser(userRegistrationDto);
         UserDto findByUsername = loginAndRegisterFacade.findByUsername(userRegistrationDto.getUsername());
 
         assertAll(
                 () -> assertThat(findByUsername).isNotNull(),
-                () -> assertThat(findByUsername).isEqualTo(registeredUser)
+                () -> assertThat(findByUsername).isEqualTo(registeredUser),
+                () -> Assertions.assertThrows(UserNotFoundException.class, () -> {
+                    loginAndRegisterFacade.findByUsername(usernameNotInDb);
+                })
 
         );
 
