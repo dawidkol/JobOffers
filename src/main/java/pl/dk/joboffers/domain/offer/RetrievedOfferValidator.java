@@ -1,11 +1,12 @@
 package pl.dk.joboffers.domain.offer;
 
 
-import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Service;
+import pl.dk.joboffers.domain.offer.dto.OfferDto;
 
 import java.util.List;
 
-@AllArgsConstructor
+@Service
 class RetrievedOfferValidator {
 
 

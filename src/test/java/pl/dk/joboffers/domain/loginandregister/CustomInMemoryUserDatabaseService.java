@@ -9,9 +9,6 @@ class CustomInMemoryUserDatabaseService implements UserRepository{
     Long userId = 1L;
     Set<User> users = new HashSet<>();
 
-
-
-
     public User save(User user) {
         User savedUser = User.builder()
                 .id(userId)
@@ -24,7 +21,6 @@ class CustomInMemoryUserDatabaseService implements UserRepository{
         userId++;
         return savedUser;
     }
-
 
     public Optional<User> findByUsername(String username) {
         return users.stream()

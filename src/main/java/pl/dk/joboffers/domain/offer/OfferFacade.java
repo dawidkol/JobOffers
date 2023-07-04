@@ -1,22 +1,26 @@
 package pl.dk.joboffers.domain.offer;
 
 import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Component;
+import pl.dk.joboffers.domain.offer.dto.OfferDto;
+import pl.dk.joboffers.domain.offer.exceptions.NoNewOfferToSaveException;
+import pl.dk.joboffers.domain.offer.exceptions.OfferNotFoundException;
 
 import java.util.List;
 
 @AllArgsConstructor
+@Component
 public class OfferFacade {
 
-    private static final String OFFER_NOT_FOUND = "Offer not found";
-    private static final String NO_OFFER_TO_SAVE = "No new offer to save";
     private final OfferRepository offerRepository;
     private final OfferFetcher offerFetcher;
     private final OfferDtoMapper offerDtoMapper;
     private final RetrievedOfferValidator retrievedOfferValidator;
 
+
     public OfferDto findOfferById(Long id) {
         return offerRepository.findOfferById(id).map(offerDtoMapper::map)
-                .orElseThrow(() -> new OfferNotFoundException(OFFER_NOT_FOUND));
+                .orElseThrow(OfferNotFoundException::new);
     }
 
     public List<OfferDto> findAllOffers() {
@@ -43,7 +47,7 @@ public class OfferFacade {
                     .map(this::save)
                     .toList();
         } else {
-            throw new NoNewOfferToSaveException(NO_OFFER_TO_SAVE);
+            throw new NoNewOfferToSaveException();
         }
 
 

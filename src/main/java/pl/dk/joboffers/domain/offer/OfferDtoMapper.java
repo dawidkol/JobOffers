@@ -1,15 +1,17 @@
 package pl.dk.joboffers.domain.offer;
 
 
+import org.springframework.stereotype.Service;
+import pl.dk.joboffers.domain.offer.dto.OfferDto;
 
+@Service
 class OfferDtoMapper {
 
     OfferDto map(Offer offer) {
         return OfferDto.builder()
-                .companyName(offer.getCompanyName())
-                .position(offer.getPosition())
-                .minSalary(offer.getMinSalary())
-                .maxSalary(offer.getMaxSalary())
+                .company(offer.getCompany())
+                .title(offer.getTitle())
+                .salary(offer.getSalary())
                 .offerUrl(offer.getOfferUrl())
                 .build();
     }
@@ -17,10 +19,9 @@ class OfferDtoMapper {
 
     Offer map(OfferDto offerDto) {
         return Offer.builder()
-                .companyName(offerDto.getCompanyName())
-                .position(offerDto.getPosition())
-                .minSalary(offerDto.getMinSalary())
-                .maxSalary(offerDto.getMaxSalary())
+                .company(offerDto.getCompany())
+                .title(offerDto.getTitle())
+                .salary(offerDto.getSalary())
                 .offerUrl(offerDto.getOfferUrl())
                 .build();
     }

@@ -1,11 +1,6 @@
 package pl.dk.joboffers.domain.offer;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-
-import java.math.BigDecimal;
+import lombok.*;
 
 @Builder
 @Getter
@@ -14,11 +9,9 @@ import java.math.BigDecimal;
 class Offer {
 
     private Long id;
-    private String companyName;
-    private String position;
-    private BigDecimal minSalary;
-    private BigDecimal maxSalary;
+    private String company;
+    private String title;
+    private String salary;
     private String offerUrl;
-
 
 }

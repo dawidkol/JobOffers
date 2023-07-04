@@ -3,8 +3,10 @@ package pl.dk.joboffers.domain.offer;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import pl.dk.joboffers.domain.offer.dto.OfferDto;
+import pl.dk.joboffers.domain.offer.exceptions.NoNewOfferToSaveException;
+import pl.dk.joboffers.domain.offer.exceptions.OfferNotFoundException;
 
-import java.math.BigDecimal;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -33,8 +35,7 @@ class OfferFacadeTest {
         OfferDto offerDto = new OfferDto(
                 "abc",
                 "developer",
-                new BigDecimal("100"),
-                new BigDecimal("1000"),
+                "7000 - 15000",
                 "www.jobOffer.pl/oferta1"
         );
 
@@ -79,8 +80,7 @@ class OfferFacadeTest {
         //given
         OfferDto offerToSave = new OfferDto("Appul",
                 "Software Engineer",
-                new BigDecimal(50000),
-                new BigDecimal(100000),
+                "7000 - 15000",
                 "https://www.appul.com/offer");
 
         //when
@@ -109,8 +109,7 @@ class OfferFacadeTest {
         //given
         OfferDto offerToSave = new OfferDto("Appul",
                 "Software Engineer",
-                new BigDecimal(50000),
-                new BigDecimal(100000),
+                "7000 - 15000",
                 "https://www.appul.com/offer");
 
         OfferDto save = offerFacade.save(offerToSave);
