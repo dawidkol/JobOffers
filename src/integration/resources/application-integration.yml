@@ -1,0 +1,8 @@
+infrastructure:
+  offer:
+    scheduler:
+      request:
+        delay: PT1s
+
+scheduler:
+  enabled: false

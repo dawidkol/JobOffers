@@ -1,7 +1,10 @@
 package pl.dk.joboffers.domain.offer;
 
+import org.springframework.stereotype.Service;
+
 import java.util.*;
 
+@Service
 class CustomInMemoryOfferDatabaseService implements OfferRepository{
     /*List<Offer> jobOffersList = new ArrayList<>();*/
     Map<Long, Offer> jobOffersList = new HashMap<>();
@@ -15,7 +18,7 @@ class CustomInMemoryOfferDatabaseService implements OfferRepository{
                 .filter(x -> x.getKey().equals(id)).findFirst()
                 .map(Map.Entry::getValue);
 
-        /*return Optional.of(jobOffersList.get(id.intValue() -1));*/
+
     }
 
     @Override
@@ -27,10 +30,9 @@ class CustomInMemoryOfferDatabaseService implements OfferRepository{
     public Offer save(Offer offer) {
         Offer offerToSave = Offer.builder()
                 .id(jobOfferId)
-                .companyName(offer.getCompanyName())
-                .position(offer.getPosition())
-                .minSalary(offer.getMinSalary())
-                .maxSalary(offer.getMaxSalary())
+                .company(offer.getCompany())
+                .title(offer.getTitle())
+                .salary(offer.getSalary())
                 .offerUrl(offer.getOfferUrl())
                 .build();
         jobOffersList.put(jobOfferId, offerToSave);

@@ -4,6 +4,7 @@ package pl.dk.joboffers.domain.loginandregister;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import pl.dk.joboffers.domain.loginandregister.exceptions.UserNotFoundException;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertAll;
