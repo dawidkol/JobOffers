@@ -11,6 +11,8 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+
+
 class OfferFacadeTest {
 
     private OfferFacade offerFacade;
@@ -21,7 +23,7 @@ class OfferFacadeTest {
 
     @BeforeEach
     void init() {
-        offerRepository = new CustomInMemoryOfferDatabaseService();
+        offerRepository = new CustomInMemoryOfferDatabaseServiceForUnitTests();
         offerFetcher = new CustomOfferProvider();
         offerDtoMapper = new OfferDtoMapper();
         retrievedOfferValidator = new RetrievedOfferValidator();
@@ -85,7 +87,7 @@ class OfferFacadeTest {
 
         //when
         OfferDto savedOffer = offerFacade.save(offerToSave);
-        int dbSize = offerRepository.getDatabaseSize();
+        long dbSize = offerRepository.count();
 
         //then
         assertEquals(1, dbSize);
@@ -98,7 +100,7 @@ class OfferFacadeTest {
         List<OfferDto> offerDtos = offerFacade.fetchAllOfferAndSaveIfNotExists();
 
         //when
-        int databaseSize = offerRepository.getDatabaseSize();
+        long databaseSize = offerRepository.count();
 
         //then
         assertEquals(10, databaseSize);
@@ -113,7 +115,7 @@ class OfferFacadeTest {
                 "https://www.appul.com/offer");
 
         OfferDto save = offerFacade.save(offerToSave);
-        OfferDto offerFound = offerFacade.findOfferById(1L);
+        OfferDto offerFound = offerFacade.findOfferById(String.valueOf(1L));
 
         assertAll(
                 () -> assertEquals(offerToSave, save),
@@ -129,7 +131,7 @@ class OfferFacadeTest {
 
         //when then
         Assertions.assertThrows(OfferNotFoundException.class, () -> {
-            offerFacade.findOfferById(id);
+            offerFacade.findOfferById(String.valueOf(id));
         });
     }
 
@@ -141,7 +143,7 @@ class OfferFacadeTest {
 
         //when
         List<OfferDto> allOffers = offerFacade.findAllOffers();
-        int databaseSize = offerRepository.getDatabaseSize();
+        long databaseSize = offerRepository.count();
 
         assertAll(
                 () -> assertEquals(10, allOffers.size()),

@@ -1,10 +1,9 @@
 package pl.dk.joboffers.domain.offer;
 
 
-import org.springframework.stereotype.Service;
 import pl.dk.joboffers.domain.offer.dto.OfferDto;
 
-@Service
+
 class OfferDtoMapper {
 
     OfferDto map(Offer offer) {

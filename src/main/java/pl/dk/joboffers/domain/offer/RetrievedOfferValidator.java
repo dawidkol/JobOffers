@@ -1,16 +1,13 @@
 package pl.dk.joboffers.domain.offer;
 
 
-import org.springframework.stereotype.Service;
 import pl.dk.joboffers.domain.offer.dto.OfferDto;
 
 import java.util.List;
 
-@Service
+
+
 class RetrievedOfferValidator {
-
-
-
 
     public List<OfferDto> validate(OfferFetcher offerFetcher, OfferDtoMapper offerDtoMapper, OfferRepository offerRepository) {
         return offerFetcher.fetchAllOffers()
@@ -19,9 +16,8 @@ class RetrievedOfferValidator {
                 .toList();
     }
 
-
     public List<OfferDto> existingOffersInDb (OfferRepository offerRepository, OfferDtoMapper offerDtoMapper){
-        return offerRepository.findAllOffers()
+        return offerRepository.findAll()
                 .stream()
                 .map(offerDtoMapper::map)
                 .toList();
