@@ -26,8 +26,6 @@ class OfferHttpClient implements OfferFetcher {
 
     private final int port;
 
-
-
     public OfferHttpClient(RestTemplate restTemplate, String uri, int port) {
         this.restTemplate = restTemplate;
         this.uri = uri;

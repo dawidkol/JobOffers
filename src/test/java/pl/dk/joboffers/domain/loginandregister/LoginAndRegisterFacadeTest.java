@@ -16,7 +16,7 @@ class LoginAndRegisterFacadeTest {
 
     @BeforeEach
     void init() {
-        UserRepository userRepository = new CustomInMemoryUserDatabaseService();
+        UserRepository userRepository = new CustomInMemoryUserDatabaseServiceForUnitTests();
         UserDtoMapper userDtoMapper = new UserDtoMapper();
         loginAndRegisterFacade = new LoginAndRegisterFacade(userRepository, userDtoMapper);
     }

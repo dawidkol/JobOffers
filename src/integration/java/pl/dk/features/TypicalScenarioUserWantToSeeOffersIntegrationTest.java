@@ -2,13 +2,17 @@ package pl.dk.features;
 
 import com.github.tomakehurst.wiremock.client.WireMock;
 import lombok.extern.log4j.Log4j2;
+import org.junit.Assert;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import pl.BaseIntegrationTest;
 import pl.dk.joboffers.domain.offer.OfferFetcher;
+import pl.dk.joboffers.domain.offer.dto.OfferDto;
 import pl.dk.joboffers.domain.offer.exceptions.NoNewOfferToSaveException;
 import pl.dk.joboffers.infrastructure.offer.scheduler.HttpSchedulerOffers;
+
+import java.util.List;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
@@ -35,11 +39,17 @@ class TypicalScenarioUserWantToSeeOffersIntegrationTest extends BaseIntegrationT
                         .withBody(bodyWithZeroJobOfferJson())));
 
 //  step 2:scheduler ran 1 st time and made GET to external server and system added 0 offers to database
-        try {
-            schedulerOffers.fetchAllOfferAndSaveIfNotExists();
+        /*try {
+            List<OfferDto> offersToSave = schedulerOffers.fetchAllOfferAndSaveIfNotExists();
+            *//*Assertions.assertEquals(0, offersToSave);*//*
         } catch (NoNewOfferToSaveException e) {
             log.error(e.getMessage());
-        }
+        }*/
+
+        Assert.assertThrows(NoNewOfferToSaveException.class, () -> {
+            List<OfferDto> offersToSave = schedulerOffers.fetchAllOfferAndSaveIfNotExists();
+        });
+
 
 
 //  step 3:user tried to get JWT token by requesting POST / token with username = someUser, password = somepassword and system returned UNAUTHORIZED(401)

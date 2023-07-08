@@ -12,7 +12,6 @@ import static org.springframework.http.HttpStatus.*;
 
 class RestTemplateResponseErrorHandler extends DefaultResponseErrorHandler {
 
-
     @Override
     public void handleError(ClientHttpResponse httpResponse) throws IOException {
 
