@@ -14,9 +14,7 @@ class RestTemplateResponseErrorHandler extends DefaultResponseErrorHandler {
 
     @Override
     public void handleError(ClientHttpResponse httpResponse) throws IOException {
-
         final HttpStatusCode statusCode = httpResponse.getStatusCode();
-
         if (statusCode.is5xxServerError()) {
             throw new ResponseStatusException(INTERNAL_SERVER_ERROR, "Error while using client");
         } else if (statusCode.is4xxClientError()) {
@@ -26,6 +24,9 @@ class RestTemplateResponseErrorHandler extends DefaultResponseErrorHandler {
                 throw new ResponseStatusException(UNAUTHORIZED);
             } else if (statusCode.isSameCodeAs(NO_CONTENT)) {
                 throw new ResponseStatusException(NO_CONTENT);
+            } else if (statusCode.isSameCodeAs(FORBIDDEN)) {
+                throw new ResponseStatusException(FORBIDDEN);
+                
             }
         }
     }

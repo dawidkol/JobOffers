@@ -16,7 +16,6 @@ import static org.mockito.Mockito.verify;
 @SpringBootTest(classes = JobOffersApplication.class, properties = {"scheduler.enabler = true"})
 class HttpOffersSchedulerTest extends BaseIntegrationTest {
 
-
     @SpyBean
     OfferFetcher offerFetcher;
     @Test

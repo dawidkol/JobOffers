@@ -3,29 +3,22 @@ package pl.dk.http.error;
 import com.github.tomakehurst.wiremock.client.WireMock;
 import com.github.tomakehurst.wiremock.http.Fault;
 import com.github.tomakehurst.wiremock.junit5.WireMockExtension;
-import org.apache.hc.client5.http.impl.Wire;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.RegisterExtension;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.server.ResponseStatusException;
 import pl.dk.joboffers.domain.offer.OfferFetcher;
-import pl.dk.joboffers.domain.offer.dto.OfferDto;
-
-import java.lang.module.ResolutionException;
-import java.util.List;
-
 import static com.github.tomakehurst.wiremock.core.WireMockConfiguration.wireMockConfig;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.catchException;
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static pl.BaseIntegrationTest.wireMockServer;
 
 class FetchOfferRestTemplateIntegrationTest {
 
     @RegisterExtension
     public static WireMockExtension wireMockServer = WireMockExtension.newInstance()
-            .options(wireMockConfig().dynamicPort())
+            .options(wireMockConfig().port(1000))
             .build();
 
     OfferFetcher offerFetcher = new FetchOfferRestTemplateIntegrationTestConfig().remoteOfferFetcherClient(
@@ -116,19 +109,35 @@ class FetchOfferRestTemplateIntegrationTest {
 
     @Test
     void shouldThrowHttpStatusNotFound() {
-        wireMockServer.stubFor(WireMock.get("/offer")
+        wireMockServer.stubFor(WireMock.get("/offers")
                 .willReturn(WireMock.aResponse()
-                        .withStatus(HttpStatus.UNAUTHORIZED.value())
+                        .withStatus(HttpStatus.NOT_FOUND.value())
                         .withHeader("Content-Type", "application-json")));
 
         Exception exception = catchException(() -> offerFetcher.fetchAllOffers());
 
         assertAll(
                 () -> assertThrows(ResponseStatusException.class, () -> offerFetcher.fetchAllOffers()),
-                () -> assertThat(exception.getMessage()).isEqualTo(HttpStatus.NOT_FOUND)
+                () -> assertThat(exception.getMessage()).isEqualTo(HttpStatus.NOT_FOUND.toString())
         );
-
     }
+
+    @Test
+    void shouldThrowHttStatusForbidden() {
+        wireMockServer.stubFor(WireMock.get("/offers")
+                .willReturn(WireMock.aResponse()
+                        .withStatus(HttpStatus.FORBIDDEN.value())
+                        .withHeader("Content-Type", "application-json")));
+
+        Exception exception = catchException(() -> offerFetcher.fetchAllOffers());
+
+        assertAll(
+                () -> assertThrows(ResponseStatusException.class, () -> offerFetcher.fetchAllOffers()),
+                () -> assertThat(exception.getMessage()).isEqualTo(HttpStatus.FORBIDDEN.toString())
+        );
+    }
+
+
 
 
 }
