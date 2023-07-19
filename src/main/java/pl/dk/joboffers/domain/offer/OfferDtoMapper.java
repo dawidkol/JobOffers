@@ -8,18 +8,17 @@ class OfferDtoMapper {
 
     OfferDto map(Offer offer) {
         return OfferDto.builder()
-                .company(offer.getCompany())
+                .id(offer.getId())
                 .title(offer.getTitle())
+                .company(offer.getCompany())
                 .salary(offer.getSalary())
                 .offerUrl(offer.getOfferUrl())
                 .build();
     }
-
-
     Offer map(OfferDto offerDto) {
         return Offer.builder()
-                .company(offerDto.getCompany())
                 .title(offerDto.getTitle())
+                .company(offerDto.getCompany())
                 .salary(offerDto.getSalary())
                 .offerUrl(offerDto.getOfferUrl())
                 .build();

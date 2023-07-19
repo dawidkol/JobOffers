@@ -10,6 +10,7 @@ class OfferFacadeConfig {
     OfferFacade offerFacade(OfferRepository offerRepository, OfferFetcher offerFetcher) {
         OfferDtoMapper offerDtoMapper = new OfferDtoMapper();
         RetrievedOfferValidator retrievedOfferValidator = new RetrievedOfferValidator();
-        return new OfferFacade(offerRepository, offerFetcher, offerDtoMapper, retrievedOfferValidator);
+        SaveOfferValidator saveOfferValidator = new SaveOfferValidator();
+        return new OfferFacade(offerRepository, offerFetcher, offerDtoMapper, retrievedOfferValidator, saveOfferValidator);
     }
 }

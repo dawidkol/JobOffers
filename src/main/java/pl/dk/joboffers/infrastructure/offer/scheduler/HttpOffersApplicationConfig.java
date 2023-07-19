@@ -9,5 +9,4 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @EnableScheduling
 @ConditionalOnProperty(name = "scheduler.enabled", matchIfMissing = true)
 class HttpOffersApplicationConfig {
-
 }

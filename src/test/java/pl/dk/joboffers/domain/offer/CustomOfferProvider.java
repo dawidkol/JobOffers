@@ -7,16 +7,63 @@ import java.util.List;
 class CustomOfferProvider implements OfferFetcher {
 
     List<OfferDto> customJobOfferList = List.of(
-            new OfferDto("Company A", "Software Engineer", "50000 - 100000", "https://www.companya.com/offer"),
-            new OfferDto("Company B", "Data Analyst", "60000 - 120000", "https://www.companyb.com/offer"),
-            new OfferDto("Company C", "Product Manager", "70000 - 140000", "https://www.companyc.com/offer"),
-            new OfferDto("Company D", "UX Designer", "55000 - 110000", "https://www.companyd.com/offer"),
-            new OfferDto("Company E", "Frontend Developer", "45000 - 90000", "https://www.companye.com/offer"),
-            new OfferDto("Company F", "Data Scientist", "65000 - 130000", "https://www.companyf.com/offer"),
-            new OfferDto("Company G", "Project Manager", "60000 - 120000", "https://www.companyg.com/offer"),
-            new OfferDto("Company H", "Backend Developer", "55000 - 110000", "https://www.companyh.com/offer"),
-            new OfferDto("Company I", "Business Analyst", "50000 - 100000", "https://www.companyi.com/offer"),
-            new OfferDto("Company J", "Software Tester", "45000 - 90000", "https://www.companyj.com/offer")
+            OfferDto.builder()
+                    .company("Company A")
+                    .title("Software Engineer")
+                    .salary("50000 - 100000")
+                    .offerUrl("https://www.companya.com/offer")
+                    .build(),
+            OfferDto.builder().company("Company B")
+                    .title("Data Analyst")
+                    .salary("60000 - 120000")
+                    .offerUrl("https://www.companyb.com/offer")
+                    .build(),
+            OfferDto.builder().company("Company C")
+                    .title("Product Manager")
+                    .salary("70000 - 140000")
+                    .offerUrl("https://www.companyc.com/offer")
+                    .build(),
+            OfferDto.builder()
+                    .company("Company D")
+                    .title("UX Designer")
+                    .salary("55000 - 110000")
+                    .offerUrl("https://www.companyd.com/offer")
+                    .build(),
+            OfferDto.builder()
+                    .company("Company E")
+                    .title("Frontend Developer")
+                    .salary("45000 - 90000")
+                    .offerUrl("https://www.companye.com/offer")
+                    .build(),
+            OfferDto.builder().
+                    company("Company F")
+                    .title("Data Scientist")
+                    .salary("65000 - 130000")
+                    .offerUrl("https://www.companyf.com/offer")
+                    .build(),
+            OfferDto.builder()
+                    .company("Company G")
+                    .title("Project Manager")
+                    .salary("60000 - 120000")
+                    .offerUrl("https://www.companyg.com/offer")
+                    .build(),
+            OfferDto.builder().company("Company H")
+                    .title("Backend Developer")
+                    .salary("55000 - 110000")
+                    .offerUrl("https://www.companyh.com/offer")
+                    .build(),
+            OfferDto.builder().
+                    company("Company I")
+                    .title("Business Analyst")
+                    .salary("50000 - 100000")
+                    .offerUrl("https://www.companyi.com/offer")
+                    .build(),
+            OfferDto.builder()
+                    .company("Company J")
+                    .title("Software Tester")
+                    .salary("45000 - 90000")
+                    .offerUrl("https://www.companyj.com/offer")
+                    .build()
     );
 
 

@@ -12,7 +12,7 @@ import java.time.Duration;
 
 
 @Configuration
-class OfferHttpClientConfig {
+public class OfferHttpClientConfig {
 
     @Bean
     public RestTemplateResponseErrorHandler restTemplateResponseErrorHandler() {

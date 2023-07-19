@@ -13,15 +13,12 @@ import static org.junit.jupiter.api.Assertions.assertAll;
 class LoginAndRegisterFacadeTest {
 
     private LoginAndRegisterFacade loginAndRegisterFacade;
-
     @BeforeEach
     void init() {
         UserRepository userRepository = new CustomInMemoryUserDatabaseServiceForUnitTests();
         UserDtoMapper userDtoMapper = new UserDtoMapper();
         loginAndRegisterFacade = new LoginAndRegisterFacade(userRepository, userDtoMapper);
     }
-
-
     @Test
     void shouldRegisterUser() {
         //given
@@ -42,7 +39,6 @@ class LoginAndRegisterFacadeTest {
                 () -> assertThat(registeredUser).isInstanceOfAny(UserDto.class)
         );
     }
-
     @Test
     void shouldFindUserByUsername() {
         UserRegistrationDto userRegistrationDto = UserRegistrationDto.builder()
@@ -61,10 +57,9 @@ class LoginAndRegisterFacadeTest {
                 () -> assertThat(findByUsername).isEqualTo(registeredUser),
                 () -> Assertions.assertThrows(UserNotFoundException.class, () -> {
                     loginAndRegisterFacade.findByUsername(usernameNotInDb);
-                })
-
+                }
+                )
         );
-
     }
 
 
