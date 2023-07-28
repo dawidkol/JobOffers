@@ -1,10 +1,12 @@
 package pl.dk.joboffers.domain.loginandregister;
 
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import pl.dk.joboffers.domain.loginandregister.exceptions.UserNotFoundException;
+import pl.dk.joboffers.domain.loginandregister.dto.UserDto;
+import pl.dk.joboffers.domain.loginandregister.dto.UserDtoWithoutPassword;
+
+import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertAll;
@@ -22,43 +24,35 @@ class LoginAndRegisterFacadeTest {
     @Test
     void shouldRegisterUser() {
         //given
-        UserRegistrationDto userRegistrationDto = UserRegistrationDto.builder()
-                .firstName("Jan")
-                .lastName("Kowalski")
+        UserDto userRegistrationDto = UserDto.builder()
                 .username("JK23")
                 .password("hardPass")
                 .build();
 
 
         //when
-        UserDto registeredUser = loginAndRegisterFacade.registerUser(userRegistrationDto);
+        UserDtoWithoutPassword registeredUser = loginAndRegisterFacade.registerUser(userRegistrationDto);
 
         //then
         assertAll(
                 () -> assertThat(registeredUser).isNotNull(),
-                () -> assertThat(registeredUser).isInstanceOfAny(UserDto.class)
+                () -> assertThat(registeredUser).isInstanceOfAny(UserDtoWithoutPassword.class)
         );
     }
     @Test
     void shouldFindUserByUsername() {
-        UserRegistrationDto userRegistrationDto = UserRegistrationDto.builder()
-                .firstName("Adam")
-                .lastName("Malinowski")
+        UserDto userRegistrationDto = UserDto.builder()
                 .username("ADMA321")
                 .password("hardPass")
                 .build();
         String usernameNotInDb = "Jan";
 
-        UserDto registeredUser = loginAndRegisterFacade.registerUser(userRegistrationDto);
-        UserDto findByUsername = loginAndRegisterFacade.findByUsername(userRegistrationDto.getUsername());
+        UserDtoWithoutPassword registeredUser = loginAndRegisterFacade.registerUser(userRegistrationDto);
+        Optional<UserDtoWithoutPassword> findByUsername = loginAndRegisterFacade.findByUsername(userRegistrationDto.username());
 
         assertAll(
-                () -> assertThat(findByUsername).isNotNull(),
-                () -> assertThat(findByUsername).isEqualTo(registeredUser),
-                () -> Assertions.assertThrows(UserNotFoundException.class, () -> {
-                    loginAndRegisterFacade.findByUsername(usernameNotInDb);
-                }
-                )
+                () -> assertThat(findByUsername).isNotEmpty(),
+                () -> assertThat(findByUsername.get()).isEqualTo(registeredUser)
         );
     }
 

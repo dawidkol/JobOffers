@@ -8,6 +8,7 @@ import org.junit.jupiter.api.extension.RegisterExtension;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.server.ResponseStatusException;
 import pl.dk.joboffers.domain.offer.OfferFetcher;
+
 import static com.github.tomakehurst.wiremock.core.WireMockConfiguration.wireMockConfig;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.catchException;

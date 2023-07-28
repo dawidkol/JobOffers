@@ -1,5 +1,4 @@
 package pl;
-
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.github.tomakehurst.wiremock.junit5.WireMockExtension;
 import org.junit.jupiter.api.extension.RegisterExtension;
@@ -18,11 +17,13 @@ import pl.dk.joboffers.JobOffersApplication;
 
 import static com.github.tomakehurst.wiremock.core.WireMockConfiguration.wireMockConfig;
 
+
 @ActiveProfiles("integration")
 @SpringBootTest(classes = JobOffersApplication.class)
 @AutoConfigureMockMvc
 @Testcontainers
-public class  BaseIntegrationTest {
+public class BaseIntegrationTest {
+
     public static final String WIRE_MOCK_HOST = "http://localhost";
 
     @Autowired
@@ -37,8 +38,8 @@ public class  BaseIntegrationTest {
     @RegisterExtension
     public static WireMockExtension wireMockServer =
             WireMockExtension.newInstance()
-            .options(wireMockConfig().dynamicPort())
-            .build();
+                    .options(wireMockConfig().dynamicPort())
+                    .build();
 
 
     @DynamicPropertySource
@@ -47,5 +48,6 @@ public class  BaseIntegrationTest {
         registry.add("offer.http.client.config.uri", () -> WIRE_MOCK_HOST);
         registry.add("offer.http.client.config.port", () -> wireMockServer.getPort());
     }
+
 
 }

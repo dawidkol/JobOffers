@@ -1,19 +1,17 @@
 package pl.dk.joboffers.infrastructure.validation;
 
 import lombok.extern.log4j.Log4j2;
-import lombok.extern.slf4j.Slf4j;
-import org.hibernate.validator.internal.engine.messageinterpolation.parser.MessageDescriptorFormatException;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.MethodArgumentNotValidException;
-import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.RestControllerAdvice;
+import pl.dk.joboffers.infrastructure.offer.controller.OfferController;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
-@ControllerAdvice
+@RestControllerAdvice(basePackageClasses = OfferController.class)
 @Log4j2
 class ApiValidationErrorHandler {
 
@@ -27,7 +25,7 @@ class ApiValidationErrorHandler {
                 .map(fieldError -> new ConstraintViolationError(fieldError.getField(), fieldError.getDefaultMessage()))
                 .toList();
 
-        list.forEach(constraint -> log.error("field: " + constraint.getField() + " " + constraint.getMessage()));
+        list.forEach(constraint -> log.error("field: " + constraint.field() + " " + constraint.message()));
 
         return list;
     }

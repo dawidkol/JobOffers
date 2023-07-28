@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import pl.dk.joboffers.domain.offer.OfferFacade;
 import pl.dk.joboffers.domain.offer.dto.OfferDto;
+import pl.dk.joboffers.domain.offer.dto.OfferToSaveDto;
 import pl.dk.joboffers.infrastructure.offer.controller.error.OfferControllerErrorHandler;
 
 import java.net.URI;
@@ -51,13 +52,12 @@ public class OfferController {
     }
 
     @PostMapping(value = "/offers/save", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<OfferDto> saveOffer(@Valid @RequestBody OfferDto offerDto) {
-        OfferDto savedOffer = offerFacade.save(offerDto);
+    public ResponseEntity<OfferDto> saveOffer(@Valid @RequestBody OfferToSaveDto offerToSaveDto) {
+        OfferDto savedOffer = offerFacade.save(offerToSaveDto);
         URI uri = ServletUriComponentsBuilder
                 .fromCurrentRequest().replacePath("/offers/{id}")
-                .buildAndExpand(savedOffer)
+                .buildAndExpand(savedOffer.id())
                 .toUri();
-        log.info(uri);
         return ResponseEntity.created(uri).body(savedOffer);
     }
 }

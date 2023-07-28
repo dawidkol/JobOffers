@@ -1,17 +1,14 @@
 package pl.dk.joboffers.domain.offer;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import pl.dk.joboffers.domain.offer.dto.OfferDto;
-import pl.dk.joboffers.domain.offer.exceptions.NoNewOfferToSaveException;
-import pl.dk.joboffers.domain.offer.exceptions.OfferNotFoundException;
+import pl.dk.joboffers.domain.offer.dto.OfferToSaveDto;
 
 import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
-
 
 
 class OfferFacadeTest {
@@ -37,7 +34,7 @@ class OfferFacadeTest {
     @Test
     void shouldReturnOfferDtoObject() {
         //given
-        OfferDto offerDto = OfferDto.builder()
+        OfferToSaveDto offerDto = OfferToSaveDto.builder()
                 .title("abc")
                 .company("Apple")
                 .salary("7000 - 15000")
@@ -65,25 +62,21 @@ class OfferFacadeTest {
     }
 
     @Test
-    void shouldThrowNoNewOfferToSaveException() {
+    void shouldNotBeAnyNewOffersToSave() {
         //given
+        offerFacade.fetchAllOfferAndSaveIfNotExists();
 
         //when
         List<OfferDto> offerDtos1 = offerFacade.fetchAllOfferAndSaveIfNotExists();
 
         //then
-
-        Assertions.assertThrows(NoNewOfferToSaveException.class, () -> {
-                    offerFacade.fetchAllOfferAndSaveIfNotExists();
-                }
-        );
+        assertEquals(0, offerDtos1.size());
     }
 
 
     @Test
     void shouldSaveOfferToDb() {
-
-        OfferDto offerToSave = OfferDto.builder()
+        OfferToSaveDto offerToSave = OfferToSaveDto.builder()
                 .title("Software Engineer")
                 .company("Appul")
                 .salary("7000 - 15000")
@@ -113,22 +106,22 @@ class OfferFacadeTest {
     @Test
     void shouldFindOfferById() {
         //given
-        OfferDto offerToSave = OfferDto.builder()
+        OfferToSaveDto offerToSave = OfferToSaveDto.builder()
                 .title("Software Engineer")
                 .company("Appul")
                 .salary("7000 - 15000")
                 .offerUrl("https://www.appul.com/offer")
                 .build();
 
-        OfferDto save = offerFacade.save(offerToSave);
-        /*OfferDto offerFound = offerFacade.findOfferById(String.valueOf(1L));*/
+        OfferDto savedJobOffers = offerFacade.save(offerToSave);
         OfferDto offerFound = offerFacade.findOfferById(String.valueOf(1L)).get();
 
 
         assertAll(
-                () -> assertEquals(offerToSave, save),
-                () -> assertEquals(offerToSave, offerFound),
-                () -> assertNotNull(offerFound)
+                () -> assertEquals(offerToSave.title(), offerFound.title()),
+                () -> assertEquals(offerToSave.company(), offerFound.company()),
+                () -> assertEquals(offerToSave.salary(), offerFound.salary()),
+                () -> assertEquals(offerToSave.offerUrl(), offerFound.offerUrl())
         );
     }
 

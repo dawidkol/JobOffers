@@ -20,10 +20,8 @@ class CustomInMemoryUserDatabaseServiceForUnitTests implements UserRepository {
     @Override
     public <S extends User> S save(S entity) {
         User savedUser = User.builder()
-                .firstName(entity.getFirstName())
-                .lastName(entity.getLastName())
-                .username(entity.getUsername())
-                .password(entity.getPassword())
+                .username(entity.username())
+                .password(entity.password())
                 .build();
         users.put(String.valueOf(userId), savedUser);
         userId++;
@@ -34,7 +32,7 @@ class CustomInMemoryUserDatabaseServiceForUnitTests implements UserRepository {
     public Optional<User> findByUsername(String username) {
         return users.values()
                 .stream()
-                .filter(usr -> usr.getUsername().equals(username))
+                .filter(usr -> usr.username().equals(username))
                 .findFirst();
     }
 

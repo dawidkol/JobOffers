@@ -47,7 +47,8 @@ class CustomOfferProvider implements OfferFetcher {
                     .salary("60000 - 120000")
                     .offerUrl("https://www.companyg.com/offer")
                     .build(),
-            OfferDto.builder().company("Company H")
+            OfferDto.builder()
+                    .company("Company H")
                     .title("Backend Developer")
                     .salary("55000 - 110000")
                     .offerUrl("https://www.companyh.com/offer")

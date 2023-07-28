@@ -26,7 +26,6 @@ class RestTemplateResponseErrorHandler extends DefaultResponseErrorHandler {
                 throw new ResponseStatusException(NO_CONTENT);
             } else if (statusCode.isSameCodeAs(FORBIDDEN)) {
                 throw new ResponseStatusException(FORBIDDEN);
-                
             }
         }
     }

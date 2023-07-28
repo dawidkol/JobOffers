@@ -1,25 +1,34 @@
 package pl.dk.joboffers.domain.loginandregister;
 
 import lombok.AllArgsConstructor;
+import pl.dk.joboffers.domain.loginandregister.dto.UserDto;
+import pl.dk.joboffers.domain.loginandregister.dto.UserDtoWithoutPassword;
 
 @AllArgsConstructor
 class UserDtoMapper {
 
-     User mapFromUserRegistrationDto(UserRegistrationDto userRegistrationDto) {
+    User map(UserDto userDto) {
         return User.builder()
-                .firstName(userRegistrationDto.getFirstName())
-                .lastName(userRegistrationDto.getLastName())
-                .username(userRegistrationDto.getUsername())
-                .password(userRegistrationDto.getPassword())
+                .username(userDto.username())
+                .password(userDto.password())
                 .build();
     }
 
-    UserDto mapFromUser(User user) {
-         return UserDto.builder()
-                 .firstName(user.getFirstName())
-                 .lastName(user.getLastName())
-                 .username(user.getUsername())
-                 .build();
+    UserDtoWithoutPassword mapToUserWithoutPassword(User user) {
+        return UserDtoWithoutPassword.builder()
+                .id(user.id())
+                .username(user.username())
+                .build();
     }
+
+    UserDto map(User user) {
+        return UserDto.builder()
+                .username(user.getUsername())
+                .password(user.getPassword())
+                .build();
+    }
+
+
+
 
 }

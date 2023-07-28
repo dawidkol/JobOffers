@@ -8,14 +8,11 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.repository.query.FluentQuery;
 import org.springframework.stereotype.Service;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 import java.util.function.Function;
 
 @Service
-class CustomInMemoryOfferDatabaseServiceForUnitTests implements OfferRepository{
+class CustomInMemoryOfferDatabaseServiceForUnitTests implements OfferRepository {
 
     Map<String, Offer> jobOffersList = new HashMap<>();
     private Long jobOfferId = 1L;
@@ -23,10 +20,10 @@ class CustomInMemoryOfferDatabaseServiceForUnitTests implements OfferRepository{
     @Override
     public <S extends Offer> S save(S entity) {
         Offer offerToSave = Offer.builder()
-                .company(entity.getCompany())
-                .title(entity.getTitle())
-                .salary(entity.getSalary())
-                .offerUrl(entity.getOfferUrl())
+                .company(entity.company())
+                .title(entity.title())
+                .salary(entity.salary())
+                .offerUrl(entity.offerUrl())
                 .build();
         jobOffersList.put(String.valueOf(jobOfferId), offerToSave);
         jobOfferId++;
@@ -53,7 +50,14 @@ class CustomInMemoryOfferDatabaseServiceForUnitTests implements OfferRepository{
 
     @Override
     public <S extends Offer> List<S> saveAll(Iterable<S> entities) {
-        return null;
+        Iterator<S> iterator = entities.iterator();
+        while (iterator.hasNext()) {
+            jobOffersList.put(String.valueOf(jobOfferId), iterator.next());
+            jobOfferId++;
+        }
+        System.out.println(jobOffersList.size());
+        return (List<S>) new ArrayList<>(jobOffersList.values());
+
     }
 
     @Override

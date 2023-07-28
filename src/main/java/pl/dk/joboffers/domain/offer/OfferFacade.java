@@ -1,14 +1,16 @@
 package pl.dk.joboffers.domain.offer;
 
 import lombok.AllArgsConstructor;
+import lombok.extern.log4j.Log4j2;
 import pl.dk.joboffers.domain.offer.dto.OfferDto;
-import pl.dk.joboffers.domain.offer.exceptions.NoNewOfferToSaveException;
+import pl.dk.joboffers.domain.offer.dto.OfferToSaveDto;
 import pl.dk.joboffers.domain.offer.exceptions.OfferExistsInDatabaseException;
 
 import java.util.List;
 import java.util.Optional;
 
 @AllArgsConstructor
+@Log4j2
 public class OfferFacade {
 
     private final OfferRepository offerRepository;
@@ -21,7 +23,6 @@ public class OfferFacade {
     public Optional<OfferDto> findOfferById(String id) {
         return offerRepository.findById(id)
                 .map(offerDtoMapper::map);
-
     }
 
     public List<OfferDto> findAllOffers() {
@@ -31,36 +32,35 @@ public class OfferFacade {
                 .toList();
     }
 
-    public OfferDto save(OfferDto offerDto) {
-        if (saveOfferValidator.validate(offerDto, offerRepository, offerDtoMapper)) {
-            Offer offer = offerDtoMapper.map(offerDto);
-            Offer savedOffer = offerRepository.save(offer);
+    public OfferDto save(OfferToSaveDto offerToSaveDto) {
+        if (saveOfferValidator.validate(offerToSaveDto, offerRepository, offerDtoMapper)) {
+            Offer offerToSave = offerDtoMapper.map(offerToSaveDto);
+            Offer savedOffer = offerRepository.save(offerToSave);
             return offerDtoMapper.map(savedOffer);
-        } else {
+        } else
             throw new OfferExistsInDatabaseException();
-        }
-
-        /*Offer offer = offerDtoMapper.map(offerDto);
-        Offer savedOffer = offerRepository.save(offer);
-        return offerDtoMapper.map(savedOffer);*/
-
     }
+
     public List<OfferDto> fetchAllOfferAndSaveIfNotExists() {
         List<OfferDto> newOffers = retrievedOfferValidator
-                .validate(offerFetcher, offerDtoMapper, offerRepository)
+                .validateFetchedOffers(offerFetcher, offerDtoMapper, offerRepository)
                 .stream()
                 .toList();
-
         if (!newOffers.isEmpty()) {
-            return newOffers.stream()
-                    .map(this::save)
+            log.info("Numbers of new offers to save: " + newOffers.size());
+            List<Offer> offersToSave = newOffers.stream()
+                    .map(offerDtoMapper::map)
+                    .toList();
+            List<Offer> savedOffers = offerRepository.saveAll(offersToSave);
+            return savedOffers.stream()
+                    .map(offerDtoMapper::map)
                     .toList();
         } else {
-            throw new NoNewOfferToSaveException();
+            log.warn("No new offers to save in external sever");
+            return newOffers;
         }
+
     }
-
-
 }
 
 

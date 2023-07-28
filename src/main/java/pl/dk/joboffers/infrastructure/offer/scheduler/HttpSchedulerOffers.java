@@ -19,7 +19,6 @@ public class HttpSchedulerOffers {
 
     private final OfferFacade offerFacade;
     private final DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("HH:mm:ss");
-
     @Scheduled(fixedDelayString = "${infrastructure.offer.scheduler.request.delay}")
     public List<OfferDto> fetchAllOfferAndSaveIfNotExists() {
         String formattedTime = LocalDateTime.now().format(dateTimeFormatter);

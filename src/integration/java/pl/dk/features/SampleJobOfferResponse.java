@@ -1,6 +1,6 @@
 package pl.dk.features;
 
-interface SampleJobOfferResponse {
+public interface SampleJobOfferResponse {
 
     default String offerNotFoundJson(String id) {
         return String.format("""

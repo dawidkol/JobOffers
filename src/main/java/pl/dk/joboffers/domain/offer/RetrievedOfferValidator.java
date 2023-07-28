@@ -1,11 +1,14 @@
 package pl.dk.joboffers.domain.offer;
 
+import lombok.extern.log4j.Log4j2;
 import pl.dk.joboffers.domain.offer.dto.OfferDto;
+
 import java.util.List;
 
+@Log4j2
 class RetrievedOfferValidator {
 
-    public List<OfferDto> validate(OfferFetcher offerFetcher, OfferDtoMapper offerDtoMapper, OfferRepository offerRepository) {
+    public List<OfferDto> validateFetchedOffers(OfferFetcher offerFetcher, OfferDtoMapper offerDtoMapper, OfferRepository offerRepository) {
         return offerFetcher.fetchAllOffers()
                 .stream()
                 .filter(offer -> !existingOffersInDb(offerRepository, offerDtoMapper).contains(offer))
@@ -18,7 +21,5 @@ class RetrievedOfferValidator {
                 .map(offerDtoMapper::map)
                 .toList();
     }
-
-
 
 }

@@ -5,4 +5,4 @@ infrastructure:
         delay: PT1s
 
 scheduler:
-  enabled: false
+  enabled: true

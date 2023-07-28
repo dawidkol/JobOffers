@@ -7,10 +7,12 @@ import org.springframework.web.client.ResourceAccessException;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.server.ResponseStatusException;
 import org.springframework.web.util.UriComponentsBuilder;
-import pl.dk.joboffers.domain.offer.dto.OfferDto;
 import pl.dk.joboffers.domain.offer.OfferFetcher;
+import pl.dk.joboffers.domain.offer.dto.OfferDto;
+
 import java.util.Collections;
 import java.util.List;
+
 import static org.springframework.http.MediaType.APPLICATION_JSON;
 
 
@@ -28,6 +30,7 @@ class OfferHttpClient implements OfferFetcher {
         this.port = port;
     }
 
+
     @Override
     public List<OfferDto> fetchAllOffers() {
         log.info("Started fetching offers from http client");
@@ -44,7 +47,6 @@ class OfferHttpClient implements OfferFetcher {
             return (!body.isEmpty() ? body : Collections.emptyList());
         } catch (ResourceAccessException e) {
             log.error("Error while fetching offers using htttp client " + e.getMessage());
-            /*return Collections.emptyList();*/
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
