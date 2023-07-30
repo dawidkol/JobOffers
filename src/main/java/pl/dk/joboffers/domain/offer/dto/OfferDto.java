@@ -6,6 +6,7 @@ import jakarta.validation.constraints.NotNull;
 import lombok.Builder;
 import org.hibernate.validator.constraints.URL;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 @Builder
@@ -18,7 +19,7 @@ public record OfferDto(String id,
                        String company, String salary,
                        @NotNull
                        @NotEmpty
-                       @URL String offerUrl) {
+                       @URL String offerUrl) implements Serializable {
 
     @Override
     public boolean equals(Object o) {

@@ -1,4 +1,8 @@
 spring:
+  cache:
+    type: redis
+    redis:
+      time-to-live: PT1H
   data:
     mongodb:
       uri: mongodb://admin:admin@localhost:27017/offers

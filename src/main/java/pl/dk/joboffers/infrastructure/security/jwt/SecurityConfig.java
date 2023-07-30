@@ -58,17 +58,9 @@ class SecurityConfig {
                 .headers(httpSecurityHeadersConfigurer ->
                         httpSecurityHeadersConfigurer
                                 .frameOptions(HeadersConfigurer.FrameOptionsConfig::disable))
-                .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class).build();
+                .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
+                .build();
 
-
-        /*httpSecurity.cors(AbstractHttpConfigurer::disable);
-        httpSecurity.csrf(AbstractHttpConfigurer::disable);
-        httpSecurity.addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
-        httpSecurity.exceptionHandling(AbstractHttpConfigurer::disable);
-        httpSecurity.sessionManagement(httpSecuritySessionManagementConfigurer ->
-                httpSecuritySessionManagementConfigurer.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
-
-        return httpSecurity.build();*/
     }
 
     @Bean

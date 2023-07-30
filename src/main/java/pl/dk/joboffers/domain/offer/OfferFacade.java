@@ -2,6 +2,7 @@ package pl.dk.joboffers.domain.offer;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j2;
+import org.springframework.cache.annotation.Cacheable;
 import pl.dk.joboffers.domain.offer.dto.OfferDto;
 import pl.dk.joboffers.domain.offer.dto.OfferToSaveDto;
 import pl.dk.joboffers.domain.offer.exceptions.OfferExistsInDatabaseException;
@@ -25,6 +26,7 @@ public class OfferFacade {
                 .map(offerDtoMapper::map);
     }
 
+    @Cacheable(cacheNames = "offers")
     public List<OfferDto> findAllOffers() {
         return offerRepository.findAll()
                 .stream()
