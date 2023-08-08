@@ -18,9 +18,10 @@ import org.springframework.data.redis.serializer.StringRedisSerializer;
 @ConditionalOnProperty(value = "spring.cache.type", havingValue = "redis")
 class RedisConfiguration {
 
-    @Value("localhost")
+    @Value("${spring.redis.host}")
     String host;
-    @Value("63792")
+
+    @Value("${spring.redis.port}")
     int port;
 
     @Bean
