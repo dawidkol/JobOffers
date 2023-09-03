@@ -26,7 +26,7 @@ public class OfferFacade {
                 .map(offerDtoMapper::map);
     }
 
-    @Cacheable(cacheNames = "offers")
+    @Cacheable(cacheNames = "jobOffers")
     public List<OfferDto> findAllOffers() {
         return offerRepository.findAll()
                 .stream()

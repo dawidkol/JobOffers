@@ -29,5 +29,4 @@ class RestTemplateResponseErrorHandler extends DefaultResponseErrorHandler {
             }
         }
     }
-
 }

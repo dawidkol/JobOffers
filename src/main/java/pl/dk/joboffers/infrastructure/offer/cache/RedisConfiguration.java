@@ -1,8 +1,8 @@
 package pl.dk.joboffers.infrastructure.offer.cache;
 
+import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
-import org.springframework.boot.context.properties.ConfigurationPropertiesBinding;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -20,12 +20,11 @@ class RedisConfiguration {
 
     @Value("${spring.redis.host}")
     String host;
-
     @Value("${spring.redis.port}")
     int port;
 
     @Bean
-    JedisConnectionFactory jedisConnectionFactory() {
+    RedisConnectionFactory redisConnectionFactory() {
         RedisStandaloneConfiguration redisStandaloneConfiguration = new RedisStandaloneConfiguration(host, port);
         return new JedisConnectionFactory(redisStandaloneConfiguration);
     }
@@ -40,4 +39,9 @@ class RedisConfiguration {
         redisTemplate.setHashValueSerializer(new GenericJackson2JsonRedisSerializer());
         return redisTemplate;
     }
+
 }
+
+
+
+
