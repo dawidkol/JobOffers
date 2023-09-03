@@ -1,5 +1,6 @@
 package pl.dk.joboffers.infrastructure.offer.http;
 
+import jakarta.annotation.PostConstruct;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.*;
@@ -29,7 +30,6 @@ class OfferHttpClient implements OfferFetcher {
         this.uri = uri;
         this.port = port;
     }
-
 
     @Override
     public List<OfferDto> fetchAllOffers() {

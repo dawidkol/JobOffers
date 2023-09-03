@@ -1,4 +1,7 @@
 spring:
+  redis:
+    host: ${REDIS_HOST:localhost}
+    port: ${REDIS_PORT:63792}
   cache:
     type: redis
     redis:
@@ -7,6 +10,7 @@ spring:
     mongodb:
       uri: mongodb://admin:admin@localhost:27017/offers
       auto-index-creation: true
+
 
 offer:
   http:
@@ -28,3 +32,7 @@ application:
     jwt:
       secret-key: secret_key
       expiration: 259200000
+
+
+scheduler:
+  enabled: true
