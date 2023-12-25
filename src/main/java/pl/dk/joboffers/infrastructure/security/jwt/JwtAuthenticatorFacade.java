@@ -25,6 +25,7 @@ public class JwtAuthenticatorFacade {
     private String secretKey;
     @Value("${application.security.jwt.expiration}")
     private long expiration;
+
     public JwtTokenDto authenticateAndGenerateToken(UserDto userDto) {
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(userDto.username(), userDto.password())

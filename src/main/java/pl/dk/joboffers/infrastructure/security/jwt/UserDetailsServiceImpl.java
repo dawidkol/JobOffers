@@ -15,6 +15,7 @@ import pl.dk.joboffers.domain.loginandregister.dto.UserDto;
 class UserDetailsServiceImpl implements UserDetailsService {
 
     private final LoginAndRegisterFacade loginAndRegisterFacade;
+
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         return loginAndRegisterFacade.findCredentialsByUsername(username)

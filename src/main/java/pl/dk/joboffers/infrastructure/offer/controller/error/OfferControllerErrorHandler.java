@@ -17,7 +17,6 @@ public class OfferControllerErrorHandler {
 
     private final ObjectMapper objectMapper;
 
-
     public String offerNotFoundResponse(String id) throws JsonProcessingException {
         ErrorResponse errorResponse = new ErrorResponse(HttpStatus.NOT_FOUND, String.format("offer with id = %s not found", id));
         return objectMapper.writeValueAsString(errorResponse);
@@ -38,6 +37,4 @@ public class OfferControllerErrorHandler {
         ErrorResponse errorResponse = new ErrorResponse(HttpStatus.CONFLICT, message);
         return objectMapper.writeValueAsString(errorResponse);
     }
-
-
 }

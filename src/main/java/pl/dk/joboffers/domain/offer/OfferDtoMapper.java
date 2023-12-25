@@ -52,6 +52,4 @@ class OfferDtoMapper {
                 .offerUrl(offerDto.offerUrl())
                 .build();
     }
-
-
 }

@@ -22,6 +22,4 @@ class TokenControllerErrorHandler {
         ObjectMapper objectMapper = new ObjectMapper();
         return objectMapper.writeValueAsString(tokenErrorResponse);
     }
-
-
 }

@@ -18,7 +18,6 @@ import org.springframework.data.redis.serializer.StringRedisSerializer;
 @ConditionalOnProperty(value = "spring.cache.type", havingValue = "redis")
 class RedisConfiguration {
 
-
     @Value("${spring.redis.host}")
     String host;
     @Value("${spring.redis.port}")
@@ -40,7 +39,6 @@ class RedisConfiguration {
         redisTemplate.setHashValueSerializer(new GenericJackson2JsonRedisSerializer());
         return redisTemplate;
     }
-
 }
 
 

@@ -258,6 +258,4 @@ class TypicalScenarioUserWantToSeeOffersIntegrationTest extends BaseIntegrationT
                         .withHeader("Content-Type", APPLICATION_JSON_VALUE)
                         .withBody(responseMethod)));
     }
-
-
 }

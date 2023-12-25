@@ -21,5 +21,4 @@ class RetrievedOfferValidator {
                 .map(offerDtoMapper::map)
                 .toList();
     }
-
 }

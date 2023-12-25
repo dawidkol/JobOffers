@@ -18,11 +18,8 @@ public class TokenController {
     private final JwtAuthenticatorFacade jwtAuthenticator;
 
     @PostMapping(value = "/token", produces = MediaType.APPLICATION_JSON_VALUE)
-    ResponseEntity<JwtTokenDto> getToken (@Valid @RequestBody UserDto userDto) {
+    ResponseEntity<JwtTokenDto> getToken(@Valid @RequestBody UserDto userDto) {
         JwtTokenDto jwtTokenDto = jwtAuthenticator.authenticateAndGenerateToken(userDto);
         return ResponseEntity.ok(jwtTokenDto);
     }
-
-
-
 }

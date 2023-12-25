@@ -137,8 +137,4 @@ class FetchOfferRestTemplateIntegrationTest {
                 () -> assertThat(exception.getMessage()).isEqualTo(HttpStatus.FORBIDDEN.toString())
         );
     }
-
-
-
-
 }

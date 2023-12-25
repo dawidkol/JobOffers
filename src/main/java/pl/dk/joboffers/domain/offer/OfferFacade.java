@@ -61,7 +61,6 @@ public class OfferFacade {
             log.warn("No new offers to save in external sever");
             return newOffers;
         }
-
     }
 }
 

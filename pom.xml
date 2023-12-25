@@ -6,7 +6,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.1.1</version>
+        <version>3.2.0</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
@@ -20,7 +20,6 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
     <dependencies>
-
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -50,7 +49,6 @@
             <version>4.4.0</version>
         </dependency>
 
-
         <!-- https://mvnrepository.com/artifact/org.springframework.data/spring-data-mongodb -->
         <dependency>
             <groupId>org.springframework.data</groupId>
@@ -58,14 +56,12 @@
             <version>4.1.1</version>
         </dependency>
 
-
         <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-data-mongodb -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-mongodb</artifactId>
             <version>3.0.6</version>
         </dependency>
-
 
         <!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
         <dependency>
@@ -91,7 +87,6 @@
             <scope>test</scope>
         </dependency>
 
-
         <!-- https://mvnrepository.com/artifact/org.mockito/mockito-core -->
         <dependency>
             <groupId>org.mockito</groupId>
@@ -101,7 +96,6 @@
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/org.testcontainers/testcontainers -->
-
         <dependency>
             <groupId>org.testcontainers</groupId>
             <artifactId>junit-jupiter</artifactId>
@@ -139,8 +133,6 @@
             <version>2.1.0</version>
         </dependency>
 
-
-
         <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-validation -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -162,8 +154,6 @@
             <version>3.1.2</version>
         </dependency>
 
-
-
         <!-- https://mvnrepository.com/artifact/redis.clients/jedis -->
         <dependency>
             <groupId>redis.clients</groupId>
@@ -177,11 +167,11 @@
             <artifactId>lettuce-core</artifactId>
             <version>6.2.4.RELEASE</version>
         </dependency>
-
-
-
-
-
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-docker-compose</artifactId>
+            <scope>runtime</scope>
+        </dependency>
     </dependencies>
 
     <build>

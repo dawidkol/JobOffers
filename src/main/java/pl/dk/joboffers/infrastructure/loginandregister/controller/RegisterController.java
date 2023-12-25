@@ -31,7 +31,6 @@ public class RegisterController {
                 .buildAndExpand(registeredUserDto)
                 .toUri();
         return ResponseEntity.created(savedUri).body(registeredUserDto);
-
     }
 
     private UserDto createUserToSaveWithEncodedPassword(UserDto userDto) {
@@ -40,5 +39,4 @@ public class RegisterController {
                 .password(passwordEncoder.encode(userDto.password()))
                 .build();
     }
-
 }

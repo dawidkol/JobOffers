@@ -73,7 +73,6 @@ class RedisJobOffersIntegrationTest extends BaseIntegrationTest {
                             verify(offerFacade, atLeast(2)).findAllOffers();
                         }
                 );
-
     }
 }
 

@@ -10,7 +10,6 @@ import pl.dk.joboffers.domain.offer.OfferFetcher;
 
 import java.time.Duration;
 
-
 @Configuration
 public class OfferHttpClientConfig {
 
@@ -32,8 +31,8 @@ public class OfferHttpClientConfig {
 
     @Bean
     public OfferFetcher remoteOfferClient(RestTemplate restTemplate,
-                                            @Value("${offer.http.client.config.uri:http://example.com}") String uri,
-                                            @Value("${offer.http.client.config.port:5057}") int port) {
+                                          @Value("${offer.http.client.config.uri:http://example.com}") String uri,
+                                          @Value("${offer.http.client.config.port:5057}") int port) {
         return new OfferHttpClient(restTemplate, uri, port);
     }
 }
