@@ -20,8 +20,6 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
-
-
 @RestController
 @AllArgsConstructor
 @Log4j2
@@ -51,7 +49,7 @@ public class OfferController {
         }
     }
 
-    @PostMapping(value = "/offers/save", produces = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/offers", produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<OfferDto> saveOffer(@Valid @RequestBody OfferToSaveDto offerToSaveDto) {
         OfferDto savedOffer = offerFacade.save(offerToSaveDto);
         URI uri = ServletUriComponentsBuilder
