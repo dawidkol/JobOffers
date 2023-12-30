@@ -7,6 +7,15 @@ retrieve current job offers from websites and provide
 authorized users with the capability to add new offers.
 </p>
 
+<h2><strong>Key Features</strong></h2>
+<ol>
+<li><strong>Registration</strong></li>
+<li><strong>Token Authentication</strong></li>
+<li><strong>Fetching offers from an external server</strong></li>
+<li><strong>Adding offers</strong></li>
+<li><strong>Getting offers</strong></li>
+</ol>
+
 <h2>Technologies</h1>
 
 <ul>
