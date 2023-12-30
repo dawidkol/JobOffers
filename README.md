@@ -31,7 +31,9 @@ authorized users with the capability to add new offers.
 <h3>REST API Documentation</h3>
 <a href="http://localhost:8080/swagger-ui/index.html">http://localhost:8080/swagger-ui/index.html</a>
 
-![Screenshot 2023-12-25 at 23 38 47](https://github.com/dawidkol/JobOffers/assets/15035709/543e6fec-ae94-4aab-9461-65a90e4a645c)
+![Screenshot 2023-12-28 at 16 54 24](https://github.com/dawidkol/JobOffers/assets/15035709/53d45317-d80d-4f4b-9071-3cb57fa123c6)
+
+
 
 <h3>Setup</h3>
 <p>To run the application, you need to have Docker Desktop installed and running. Clone this repo to your desktop. Run application from the IDE. You will then be able to access it at localhost:8080.</p>
