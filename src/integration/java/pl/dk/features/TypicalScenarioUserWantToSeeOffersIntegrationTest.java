@@ -210,7 +210,7 @@ class TypicalScenarioUserWantToSeeOffersIntegrationTest extends BaseIntegrationT
         OfferDto jobOfferToSaveObject = objectMapper.readValue(jobOfferToSave, OfferDto.class);
 
         //when
-        ResultActions performOneJobOffer = mockMvc.perform(post("/offers/save")
+        ResultActions performOneJobOffer = mockMvc.perform(post("/offers")
                 .header("Authorization", "Bearer " + token)
                 .contentType(APPLICATION_JSON_VALUE).content(jobOfferToSave));
 
