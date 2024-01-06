@@ -35,15 +35,6 @@ class OfferDtoMapper {
                 .build();
     }
 
-    OfferToSaveDto mapToOfferToSaveDto(OfferDto offerDto) {
-        return OfferToSaveDto.builder()
-                .title(offerDto.title())
-                .company(offerDto.company())
-                .salary(offerDto.salary())
-                .offerUrl(offerDto.offerUrl())
-                .build();
-    }
-
     OfferToSaveDto mapToOfferToSaveDto(Offer offerDto) {
         return OfferToSaveDto.builder()
                 .title(offerDto.title())

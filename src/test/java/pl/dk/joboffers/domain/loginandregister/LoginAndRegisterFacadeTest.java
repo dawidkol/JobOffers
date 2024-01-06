@@ -56,8 +56,17 @@ class LoginAndRegisterFacadeTest {
         );
     }
 
+    @Test
+    void shouldNotFindUserByUsername() {
+        UserDto userRegistrationDto = UserDto.builder()
+                .username("ADMA321")
+                .password("hardPass")
+                .build();
+        String usernameNotInDb = "Jan";
 
+        UserDtoWithoutPassword registeredUser = loginAndRegisterFacade.registerUser(userRegistrationDto);
+        Optional<UserDtoWithoutPassword> findByUsername = loginAndRegisterFacade.findByUsername(usernameNotInDb);
 
-
-
+        assertThat(findByUsername).isNotPresent();
+    }
 }
