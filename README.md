@@ -33,11 +33,10 @@ authorized users with the capability to add new offers.
     <li><a href="https://springdoc.org/">Springdoc</a></li>
     <li><a href="https://projectlombok.org/">Lombok</a></li>
     <li><a href="https://github.com/redis/jedis">Jedis</a></li>
-    <li><a href="https://lettuce.io/">Lettuce</a></li>
     <li><a href="https://search.maven.org/artifact/org.springframework.boot/spring-boot-docker-compose/3.2.0">Docker Compose Support</a></li>
 </ul>
 
-<h3>REST API Documentation</h3>
+<h3>API Documentation</h3>
 <a href="http://localhost:8080/swagger-ui/index.html">http://localhost:8080/swagger-ui/index.html</a>
 
 ![Screenshot 2023-12-28 at 16 54 24](https://github.com/dawidkol/JobOffers/assets/15035709/53d45317-d80d-4f4b-9071-3cb57fa123c6)
@@ -49,3 +48,7 @@ authorized users with the capability to add new offers.
 
 <h4>Tests</h4>
 <p>We can run the tests directly from the IDE, if you are using IntelliJ it in the code view, next to the class name or method name, on the left side there will be a small green arrow. Clicking on it will show a menu from which you can select Run or Debug Test. If you have performed a test before and for some reason failed, the arrow will be red with an exclamation mark.</p>
+<p>Test coverage: 89% </p>
+
+![Screenshot 2024-01-06 at 21.42.30.png](..%2F..%2F..%2FPrintScreen%2FScreenshot%202024-01-06%20at%2021.42.30.png)
+
