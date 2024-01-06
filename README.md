@@ -50,5 +50,5 @@ authorized users with the capability to add new offers.
 <p>We can run the tests directly from the IDE, if you are using IntelliJ it in the code view, next to the class name or method name, on the left side there will be a small green arrow. Clicking on it will show a menu from which you can select Run or Debug Test. If you have performed a test before and for some reason failed, the arrow will be red with an exclamation mark.</p>
 <p>Test coverage: 89% </p>
 
-![Screenshot 2024-01-06 at 21.42.30.png](..%2F..%2F..%2FPrintScreen%2FScreenshot%202024-01-06%20at%2021.42.30.png)
+![Screenshot 2024-01-06 at 21 42 30](https://github.com/dawidkol/JobOffers/assets/15035709/d8558bdc-2e39-4047-b3ee-463b198473e3)
 
